@@ -1,0 +1,8 @@
+To add custom theme to next js via antd
+
+https://levelup.gitconnected.com/lets-create-a-project-with-nextjs-antd-and-deploy-with-now-sh-e38772348312
+
+https://dev.to/burhanuday/using-ant-design-with-nextjs-custom-variables-for-ant-design-57m5
+
+
+-----------------------------------------------------------------------------------------------------
