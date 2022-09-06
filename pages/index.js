@@ -1,10 +1,12 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import GetBalanceOfAddress from "../components/GetBalanceOfAddress";
+import NormalTransactions from "../components/NormalTransactions";
 
 export default function Home() {
   return (
     <div className={styles.container}>
+      <NormalTransactions />
       <GetBalanceOfAddress />
       <Head>
         <title>Create Next App</title>
