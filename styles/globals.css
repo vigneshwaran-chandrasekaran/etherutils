@@ -17,6 +17,25 @@ a {
 
 .main {
   min-height: 100vh;
+  max-width: calc(100% - 300px);
+  border-left: 1px solid #ccc;
+  padding: 2rem;
+}
+
+.content-area {
+  padding-top: 2rem;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
