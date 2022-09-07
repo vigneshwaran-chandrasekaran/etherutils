@@ -17,13 +17,18 @@ a {
 
 .main {
   min-height: 100vh;
-  max-width: calc(100% - 300px);
-  border-left: 1px solid #ccc;
-  padding: 2rem;
+  width: 100%;;
+  padding: 2rem 0;
+  background-color: #F8F9FA;
 }
 
 .content-area {
-  padding-top: 2rem;
+  max-width: 1368px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .flex-start {
@@ -32,9 +37,24 @@ a {
   align-items: flex-start;
 }
 
+.sidebar {
+  display: none;
+}
+
+.navbar {
+}
+
 .footer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  background-color: #82a9f9;
+}
+
+.menu-left-right {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 

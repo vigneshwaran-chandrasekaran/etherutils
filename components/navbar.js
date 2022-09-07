@@ -8,29 +8,15 @@ import {
 
 export default function Navbar() {
   return (
-    <Menu mode="horizontal" defaultSelectedKeys={["mail"]}>
+    <Menu mode="horizontal" defaultSelectedKeys={["mail"]} className="navbar">
       <Menu.Item key="mail" icon={<MailOutlined />}>
-        Navigation One
+        Logo
       </Menu.Item>
-      <Menu.SubMenu
-        key="SubMenu"
-        title="Navigation Two - Submenu"
-        icon={<SettingOutlined />}
-      >
-        <Menu.Item key="two" icon={<AppstoreOutlined />}>
-          Navigation Two
-        </Menu.Item>
-        <Menu.Item key="three" icon={<AppstoreOutlined />}>
-          Navigation Three
-        </Menu.Item>
-        <Menu.ItemGroup title="Item Group">
-          <Menu.Item key="four" icon={<AppstoreOutlined />}>
-            Navigation Four
-          </Menu.Item>
-          <Menu.Item key="five" icon={<AppstoreOutlined />}>
-            Navigation Five
-          </Menu.Item>
-        </Menu.ItemGroup>
+      <Menu.SubMenu key="SubMenu" title="Tools">
+        <Menu.Item key="1">Get Balance</Menu.Item>
+        <Menu.Item key="2">View Transactions</Menu.Item>
+        <Menu.Item key="3">Get Balance</Menu.Item>
+        <Menu.Item key="4">View Transactions</Menu.Item>
       </Menu.SubMenu>
     </Menu>
   );

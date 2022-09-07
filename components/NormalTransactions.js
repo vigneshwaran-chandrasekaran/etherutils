@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import { Input, Button, Spin, message, Table } from "antd";
-import { EyeOutlined } from '@ant-design/icons';
+import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL, SAMPLE_SINGLE_ADDREESS } from "../utils/constants";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
@@ -131,7 +131,11 @@ const columns = [
     title: "More Data",
     dataIndex: "timeStamp",
     key: "timeStamp",
-    render: (timeStamp) => <a><EyeOutlined /></a>,
+    render: (timeStamp) => (
+      <a>
+        <EyeOutlined />
+      </a>
+    ),
   },
 ];
 
@@ -173,7 +177,13 @@ export default function NormalTransactions() {
       <Button type="primary" onClick={getAddress}>
         Get Transactions
       </Button>
-      <Table columns={columns} dataSource={tableData} scroll={{ x: 2500}} />
+      <Table
+        rowKey={(record) => record.blockHash + record.blockNumber + record.hash}
+        columns={columns}
+        dataSource={tableData}
+        scroll={{ x: 2500 }}
+        size="small"
+      />
     </div>
   );
 }
