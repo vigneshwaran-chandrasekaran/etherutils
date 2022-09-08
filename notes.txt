@@ -6,3 +6,9 @@ https://dev.to/burhanuday/using-ant-design-with-nextjs-custom-variables-for-ant-
 
 
 -----------------------------------------------------------------------------------------------------
+
+curl https://api.coinbase.com/v2/prices/ETH-USD/spot
+curl https://api.coinbase.com/v2/prices/ETH-USD/buy
+curl https://api.coinbase.com/v2/prices/ETH-USD/sell
+
+{"data":{"base":"ETH","currency":"USD","amount":"3254.6"}}

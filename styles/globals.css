@@ -17,9 +17,9 @@ a {
 
 .main {
   min-height: 100vh;
-  width: 100%;;
+  width: 100%;
   padding: 2rem 0;
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
 }
 
 .content-area {
@@ -41,9 +41,6 @@ a {
   display: none;
 }
 
-.navbar {
-}
-
 .footer {
   display: flex;
   justify-content: center;
@@ -55,6 +52,15 @@ a {
 .menu-left-right {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-row {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.menu-logo {
+  display: flex;
   align-items: center;
 }
 
