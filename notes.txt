@@ -27,3 +27,6 @@ https://www.blockchain.com/explorer/assets/eth
 https://blockchair.com/ethereum
 
 -----------------------------------------------------------------------------------------------------
+https://dev.to/parmentierchristophe/how-to-deploy-static-next-js-to-aws-s3-1d4f
+
+https://www.alpeaudio.com/post/hosting-a-next-js-app-with-routing-on-aws-s3/#:~:text=js%20website%20hosted%20on%20s3,to%20replace%20myhost.com)%3A
