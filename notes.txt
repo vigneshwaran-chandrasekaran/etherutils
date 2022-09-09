@@ -12,3 +12,18 @@ curl https://api.coinbase.com/v2/prices/ETH-USD/buy
 curl https://api.coinbase.com/v2/prices/ETH-USD/sell
 
 {"data":{"base":"ETH","currency":"USD","amount":"3254.6"}}
+
+
+-----------------------------------------------------------------------------------------------------
+
+new api
+https://ethplorer.io/
+https://github.com/EverexIO/Ethplorer/wiki/Ethplorer-API
+https://beaconcha.in/
+https://ethscan.org/
+https://etherchain.org/
+https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/
+https://www.blockchain.com/explorer/assets/eth
+https://blockchair.com/ethereum
+
+-----------------------------------------------------------------------------------------------------
