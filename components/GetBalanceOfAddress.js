@@ -6,7 +6,7 @@ import {
   ETHER_URL,
   SAMPLE_SINGLE_ADDREESS,
   SAMPLE_MULTIPLE_ADDRESS,
-} from "../utils/constants";
+} from "@/utils/constants";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 

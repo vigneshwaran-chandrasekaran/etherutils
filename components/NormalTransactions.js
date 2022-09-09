@@ -3,7 +3,7 @@ import axios from "axios";
 import qs from "qs";
 import { Input, Button, Spin, message, Table } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-import { ETHER_URL, SAMPLE_SINGLE_ADDREESS } from "../utils/constants";
+import { ETHER_URL, SAMPLE_SINGLE_ADDREESS } from "@/utils/constants";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 

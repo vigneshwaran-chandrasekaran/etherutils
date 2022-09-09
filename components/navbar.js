@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Menu, Col, Row } from "antd";
 import Image from "next/image";
 
@@ -6,9 +7,18 @@ export default function Navbar() {
   return (
     <Row className="navbar-row">
       <Col span={2} />
-      <Col span={2} className="menu-logo">
-        <Image src="/ethereum.svg" alt="India Flag" width={36} height={36} />
-        <span>Ether Utils</span>
+      <Col span={2}>
+        <Link href="/">
+          <a className="menu-logo">
+            <Image
+              src="/ethereum.svg"
+              alt="India Flag"
+              width={36}
+              height={36}
+            />
+            <span>Ether Utils</span>
+          </a>
+        </Link>
       </Col>
       <Col span={14} />
       <Col span={6}>
