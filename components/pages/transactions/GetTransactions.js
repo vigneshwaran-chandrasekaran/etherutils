@@ -4,6 +4,7 @@ import qs from "qs";
 import { message, Table, Spin } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
+import EachTransactionDetails from "@/components/pages/transactions/EachTransactionDetails";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 
@@ -14,7 +15,7 @@ const queryString = {
   endblock: 99999999,
   page: 1,
   offset: 10,
-  sort: "asc",
+  sort: "desc",
 };
 const query = qs.stringify(queryString);
 console.log("queryString", query);
@@ -81,7 +82,9 @@ const columns = [
 
 export default function GetTransactions({ address = "" }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [tableData, setTableData] = useState([]);
+  const [eachRowData, setEachRowData] = useState({});
 
   function getAddress(addressData) {
     const url = `${ETHER_URL}&address=${addressData}&${query}`;
@@ -106,19 +109,40 @@ export default function GetTransactions({ address = "" }) {
     }
   }, [address]);
 
+  function handleCancel() {
+    setIsModalVisible(false);
+  }
+
   return (
     <div>
       {isLoading && <Spin size="large" />}
       {tableData?.length > 0 ? (
-        <Table
-          rowKey={(record) =>
-            record.blockHash + record.blockNumber + record.hash
-          }
-          columns={columns}
-          dataSource={tableData}
-          scroll={{ x: 2500 }}
-          size="small"
-        />
+        <div>
+          <Table
+            rowKey={(record) =>
+              record.blockHash + record.blockNumber + record.hash
+            }
+            columns={columns}
+            dataSource={tableData}
+            scroll={{ x: 2500 }}
+            size="small"
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: () => {
+                  setIsModalVisible(true);
+                  setEachRowData(record);
+                  console.log("record", record);
+                  console.log("rowIndex", rowIndex);
+                },
+              };
+            }}
+          />
+          <EachTransactionDetails
+            visible={isModalVisible}
+            record={eachRowData}
+            onCancel={handleCancel}
+          />
+        </div>
       ) : (
         <p>No data is available</p>
       )}

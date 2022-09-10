@@ -14,7 +14,7 @@ const queryString = {
   endblock: 99999999,
   page: 1,
   offset: 10,
-  sort: "asc",
+  sort: "desc",
 };
 const query = qs.stringify(queryString);
 console.log("queryString", query);
