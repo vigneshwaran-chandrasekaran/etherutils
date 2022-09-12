@@ -5,6 +5,7 @@ import { message, Table, Spin } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
 import EachTransactionDetails from "@/components/pages/transactions/EachTransactionDetails";
+import { Text } from "@/components/atmos";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 
@@ -64,18 +65,13 @@ const columns = [
     key: "gasPrice",
   },
   {
-    title: "contractAddress",
-    dataIndex: "contractAddress",
-    key: "contractAddress",
-  },
-  {
-    title: "More Data",
+    title: <Text textAlign="center">More Data</Text>,
     dataIndex: "timeStamp",
     key: "timeStamp",
     render: (timeStamp) => (
-      <a>
+      <Text textAlign="center" cursor="pointer">
         <EyeOutlined />
-      </a>
+      </Text>
     ),
   },
 ];
@@ -124,7 +120,7 @@ export default function GetTransactions({ address = "" }) {
             }
             columns={columns}
             dataSource={tableData}
-            scroll={{ x: 2500 }}
+            // scroll={{ x: 1500 }}
             size="small"
             onRow={(record, rowIndex) => {
               return {
