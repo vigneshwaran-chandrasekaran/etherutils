@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "antd";
 import { Text } from "@/components/atmos";
+import { getTime } from "@/utils/time";
 
 export default function EachTransactionDetails({
   visible = false,

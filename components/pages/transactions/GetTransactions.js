@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 import qs from "qs";
 import { message, Table, Spin } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
+import { getTime } from "@/utils/time";
 import EachTransactionDetails from "@/components/pages/transactions/EachTransactionDetails";
 import { Text } from "@/components/atmos";
 
@@ -20,11 +22,6 @@ const queryString = {
 };
 const query = qs.stringify(queryString);
 console.log("queryString", query);
-
-function getTime(timeStamp_value) {
-  const theDate = new Date(timeStamp_value * 1000);
-  return theDate.toGMTString();
-}
 
 const columns = [
   {
@@ -43,11 +40,21 @@ const columns = [
     title: "From",
     dataIndex: "from",
     key: "from",
+    render: (from) => (
+      <Link href={`/transactions/${from}`}>
+        <a>{from}</a>
+      </Link>
+    ),
   },
   {
     title: "To",
     dataIndex: "to",
     key: "to",
+    render: (to) => (
+      <Link href={`/transactions/${to}`}>
+        <a>{to}</a>
+      </Link>
+    ),
   },
   {
     title: "Value",
