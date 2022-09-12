@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import qs from "qs";
-import { message, Table, Spin } from "antd";
+import { message, Spin } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
 import { getTime } from "@/utils/time";
 import EachTransactionDetails from "@/components/pages/transactions/EachTransactionDetails";
-import { Text } from "@/components/atmos";
+import { Text, Table } from "@/components/atmos";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 
