@@ -6,7 +6,7 @@ export const Table = styled(TableAntd)`
     tr {
       th {
         background-color: #296eb3;
-		color: #fff;
+		color: ${props => props.theme.colors.white};
       }
     }
   }

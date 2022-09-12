@@ -4,13 +4,7 @@ import "@/styles/globals.css";
 import Layout from "@/components/layout";
 import GlobalStyle from "@/components/globalstyles";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
-
-const theme = {
-  colors: {
-    primary: "#111",
-    secondary: "#0070f3",
-  },
-};
+import { theme } from "@/styles/theme";
 
 function ErrorFallback() {
   return <div>Something went wrong</div>;
