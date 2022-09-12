@@ -7,33 +7,38 @@ export default function EachTransactionDetails({
   record = {},
   onCancel,
 }) {
-  console.log("record", record);
-  console.log("Object keys", Object.keys(record));
-
   return (
     <Modal
       title={<Text textAlign="center">Transactions</Text>}
-      visible={visible}
-      onOk={onCancel}
+      open={visible}
       onCancel={onCancel}
+      onOk={onCancel}
       maskClosable={false}
       width="1000px"
+      cancelButtonProps={{ style: { display: "none" } }}
     >
       <table>
-        {Object.keys(record).map((key) => (
-          <tr key={key}>
-            <td>
-              <Text fontWeight="bold" pb="1rem" mr="1rem" textTransform="capitalize">
-                {key}
-              </Text>
-            </td>
-            <td>
-              <Text maxWidth="800px" pb="1rem">
-                {record[key]}
-              </Text>
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {Object.keys(record).map((key) => (
+            <tr key={key}>
+              <td>
+                <Text
+                  fontWeight="bold"
+                  pb="1rem"
+                  mr="1rem"
+                  textTransform="capitalize"
+                >
+                  {key}
+                </Text>
+              </td>
+              <td>
+                <Text maxWidth="800px" pb="1rem">
+                  {record[key]}
+                </Text>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </Modal>
   );
