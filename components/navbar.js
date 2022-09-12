@@ -3,6 +3,19 @@ import Link from "next/link";
 import { Menu, Col, Row } from "antd";
 import Image from "next/image";
 
+const items = [
+  { label: "Get Balance", key: "1" },
+  { label: "View Transactions", key: "2" },
+  {
+    label: "Tools",
+    key: "submenu",
+    children: [
+      { label: "Get Balance", key: "3" },
+      { label: "View Transactions", key: "4" },
+    ],
+  },
+];
+
 export default function Navbar() {
   return (
     <Row className="navbar-row">
@@ -22,14 +35,7 @@ export default function Navbar() {
       </Col>
       <Col span={14} />
       <Col span={6}>
-        <Menu mode="horizontal">
-          <Menu.SubMenu key="SubMenu" title="Tools">
-            <Menu.Item key="1">Get Balance</Menu.Item>
-            <Menu.Item key="2">View Transactions</Menu.Item>
-            <Menu.Item key="3">Get Balance</Menu.Item>
-            <Menu.Item key="4">View Transactions</Menu.Item>
-          </Menu.SubMenu>
-        </Menu>
+        <Menu mode="horizontal" items={items} />
       </Col>
     </Row>
   );
