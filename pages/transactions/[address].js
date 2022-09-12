@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "antd";
+import {  Input, Divider } from "antd";
 import { useRouter } from "next/router";
 import GetTransactions from "@/components/pages/transactions/GetTransactions";
 import { Flex, Text } from "@/components/atmos";
@@ -10,10 +10,11 @@ export default function Transactions() {
   const { address } = router.query;
   return (
     <div>
-      <Flex alignItems="center" mb="1rem" justifyContent="flex-start">
-        <Text minWidth="180px">Latest transactions of:</Text>
+      <Flex alignItems="center" justifyContent="flex-start">
+        <Text minWidth="180px">Latest 10 Transactions of</Text>
         <Input value={address} />
       </Flex>
+      <Divider plain />
       <GetTransactions address={address} />
     </div>
   );

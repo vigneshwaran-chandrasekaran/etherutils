@@ -24,6 +24,7 @@ a {
 
 .content-area {
   max-width: 1368px;
+  min-height: 80vh;
   margin: 0 auto;
   padding: 1rem;
   background-color: #fff;
