@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: #3498db;
     text-decoration: none;
   }
 

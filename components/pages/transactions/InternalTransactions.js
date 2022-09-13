@@ -14,7 +14,7 @@ console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 
 const queryString = {
   module: "account",
-  action: "txlist",
+  action: "txlistinternal",
   startblock: 0,
   endblock: 99999999,
   page: 1,
@@ -106,7 +106,7 @@ const columns = [
   },
 ];
 
-export default function GetTransactions({ address = "" }) {
+export default function InternalTransactions({ address = "" }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [tableData, setTableData] = useState([]);
@@ -144,7 +144,7 @@ export default function GetTransactions({ address = "" }) {
       {isLoading && <Spin size="large" />}
       {tableData?.length > 0 ? (
         <div>
-          <h2>Normal Transactions</h2>
+          <h2>Internal Transactions</h2>
           <Table
             rowKey={(record) =>
               record.blockHash + record.blockNumber + record.hash

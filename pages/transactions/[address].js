@@ -1,7 +1,7 @@
 import React from "react";
 import {  Input, Divider } from "antd";
 import { useRouter } from "next/router";
-import GetTransactions from "@/components/pages/transactions/GetTransactions";
+import {GetTransactions, InternalTransactions} from "@/components/pages/transactions";
 import { Flex, Text } from "@/components/atmos";
 
 export default function Transactions() {
@@ -11,11 +11,12 @@ export default function Transactions() {
   return (
     <div>
       <Flex alignItems="center" justifyContent="flex-start">
-        <Text minWidth="180px">Latest 10 Transactions of</Text>
+        <Text minWidth="180px">Last 25 Transactions of</Text>
         <Input value={address} />
       </Flex>
       <Divider plain />
       <GetTransactions address={address} />
+      <InternalTransactions address={address} />
     </div>
   );
 }
