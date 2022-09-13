@@ -1,0 +1,1 @@
+export { default as EthMain } from './EthMain';

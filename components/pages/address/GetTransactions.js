@@ -4,12 +4,12 @@ import Link from "next/link";
 import qs from "qs";
 import { ethers } from "ethers";
 import moment from "moment";
-import { message, Spin } from "antd";
+import { message, Skeleton } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
 import { getTime } from "@/utils/time";
 import EachTransactionDetails from "@/components/pages/address/EachTransactionDetails";
-import { Text, Table } from "@/components/atmos";
+import { Text, Table } from "@/components/atoms";
 
 console.log("NEXT_PUBLIC_VERCEL_ENV", process.env.NEXT_PUBLIC_VERCEL_ENV);
 
@@ -156,10 +156,10 @@ export default function GetTransactions({ address = "" }) {
 
   return (
     <div>
-      {isLoading && <Spin size="large" />}
+      {isLoading && <Skeleton />}
       {tableData?.length > 0 ? (
         <div>
-          <h2>Normal Transactions</h2>
+          <h2>Transactions</h2>
           <Table
             rowKey={(record) =>
               record.blockHash + record.blockNumber + record.hash

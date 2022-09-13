@@ -9,7 +9,7 @@ import { EyeOutlined } from "@ant-design/icons";
 import { ETHER_URL } from "@/utils/constants";
 import { getTime } from "@/utils/time";
 import EachTransactionDetails from "@/components/pages/address/EachTransactionDetails";
-import { Text, Table } from "@/components/atmos";
+import { Text, Table } from "@/components/atoms";
 
 const queryString = {
   module: "account",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Divider } from "antd";
 import { useRouter } from "next/router";
-import { Flex, Text } from "@/components/atmos";
+import { Flex, Text } from "@/components/atoms";
 import { InternalTransactionsOfHash } from "@/components/pages/tx";
 
 export default function Transactions() {
