@@ -27,13 +27,13 @@ function getTime(timeStamp_value) {
 
 const columns = [
   {
-    title: "Block Number",
+    title: "Block",
     dataIndex: "blockNumber",
     key: "blockNumber",
     render: (text) => <a>{text}</a>,
   },
   {
-    title: "TimeStamp",
+    title: "Age",
     dataIndex: "timeStamp",
     key: "timeStamp",
     render: (timeStamp) => <a>{getTime(timeStamp)}</a>,
