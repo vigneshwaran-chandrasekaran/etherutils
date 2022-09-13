@@ -134,7 +134,9 @@ export default function InternalTransactions({ address = "" }) {
     axios
       .get(url)
       .then((response) => {
-        setTableData(response.data.result);
+        if (response.data.status) {
+          setTableData(response.data.result);
+        }
       })
       .catch((e) => {
         message.error("Something went wrong");
