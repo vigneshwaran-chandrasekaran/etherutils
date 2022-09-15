@@ -1,46 +1,60 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Badge, Descriptions } from "antd";
 import { ethers } from "ethers";
 import { useRouter } from "next/router";
+import { isEmpty } from "lodash";
 import { ETHERSCAN_API_KEY, INFURA_API_KEY } from "@/utils/constants";
 
-const address = "0x00000000219ab540356cbb839cbe05303d7705fa";
+// const address = "0x00000000219ab540356cbb839cbe05303d7705fa";
 
-const etherjs = async () => {
+const etherjs = async (address) => {
   const provider = new ethers.providers.EtherscanProvider(
     "homestead",
     ETHERSCAN_API_KEY
   );
 
-  //   const providers = ethers.getDefaultProvider("rinkeby", {
-  //     etherscan: ETHERSCAN_API_KEY,
-  //     infura: INFURA_API_KEY,
-  //   });
-  //   console.log("providers", providers);
-
   const hexBalance = await provider.getBalance(address);
-  const balance = ethers.utils.formatEther(hexBalance);
-  const Avatar = await provider.getAvatar(address);
 
-  console.log("provider", provider);
-  console.log("getDefaultProvider", ethers.getDefaultProvider());
-  console.log("getNetwork by name", await provider.getNetwork("homestead"));
-  console.log("getNetwork by number", await provider.getNetwork(2));
-  console.log("getCode", await provider.getCode(address));
-  console.log("address", address);
-  console.log("hexBalance", hexBalance);
-  console.log("balance", balance);
-  console.log("Avatar", Avatar);
+  return {
+    "Transaction Count": await provider.getTransactionCount(address),
+    Avatar: await provider.getAvatar(address),
+    Balance: `${ethers.utils.formatEther(hexBalance)} Ether`,
+    // Block: await provider.getBlock(100004),
+  };
 };
 
 export default function Ether() {
   const router = useRouter();
+  const [data, setData] = useState({});
   const { addressHash } = router.query;
 
   console.log("addressHash", addressHash);
 
   useEffect(() => {
-    etherjs();
-  }, []);
+    (async () => {
+      if (addressHash) {
+        const result = await etherjs(addressHash);
+        console.log("result wewew", result);
+        setData((prevState) => ({
+          ...prevState,
+          ...result,
+        }));
+      }
+    })();
+  }, [addressHash]);
 
-  return <div>index ethers {address}</div>;
+  return (
+    <div>
+      {console.log("datas ", data)}
+      {!isEmpty(data) && (
+        <Descriptions title={"Address " + addressHash} bordered column={1}>
+          {Object.keys(data).map((key) => (
+            <Descriptions.Item key={key} label={key}>
+              {data[key]}
+            </Descriptions.Item>
+          ))}
+        </Descriptions>
+      )}
+    </div>
+  );
 }
