@@ -7,6 +7,15 @@ const items = [
   { label: "Get Balance", key: "1" },
   { label: "View Transactions", key: "2" },
   {
+    label: (
+      <Link href="/ethers/address/0x00000000219ab540356cbb839cbe05303d7705fa">
+        <a>Ethers</a>
+      </Link>
+    ),
+    key: "5",
+  },
+
+  {
     label: "Tools",
     key: "submenu",
     children: [
