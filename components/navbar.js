@@ -4,6 +4,14 @@ import { Menu, Col, Row } from "antd";
 import Image from "next/image";
 
 const items = [
+  {
+    label: (
+      <Link href="/nft/owner/0x1Ccbc06Cf780E9aB8fB51113fed727C9f240De40">
+        <a>NFT</a>
+      </Link>
+    ),
+    key: "6",
+  },
   { label: "Get Balance", key: "1" },
   { label: "View Transactions", key: "2" },
   {
