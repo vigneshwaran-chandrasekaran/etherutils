@@ -1,10 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { Text, Table } from "@/components/atoms";
+
+const myLoader = () => {
+  return `Loading...`;
+};
 
 export default function Alchemy() {
   const [NFTsData, setNFTsData] = useState([]);
@@ -45,6 +49,23 @@ export default function Alchemy() {
       dataIndex: "title",
       key: "title",
       render: (title) => <span>{title}</span>,
+    },
+    {
+      title: "Media",
+      dataIndex: "title",
+      key: "title",
+      render: (title, record) => (
+        <div>
+          {record?.media?.[0]?.gateway && (
+            <img
+              src={record?.media?.[0]?.gateway}
+              alt={title}
+              width={96}
+              height={96}
+            />
+          )}
+        </div>
+      ),
     },
     {
       title: "Symbol",
