@@ -1,21 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { EyeOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { Text, Table } from "@/components/atoms";
 
-const myLoader = () => {
-  return `Loading...`;
-};
-
 export default function Alchemy() {
   const [NFTsData, setNFTsData] = useState([]);
+  const [NFTsMetaData, setNFTsMetaData] = useState({});
   const router = useRouter();
   const { ownerHash } = router.query;
 
-  useEffect(() => {
+  const getNFTMetadata = useCallback((contractAddress, tokenId) => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getNFTMetadata?contractAddress=${contractAddress}&tokenId=${tokenId}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setNFTsMetaData(response.data);
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+  }, []);
+
+  console.log("NFTsMetaData", NFTsMetaData);
+
+  const getNFTs = useCallback((ownerHash) => {
     axios
       .get(
         `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getNFTs?owner=${ownerHash}`
@@ -27,7 +41,14 @@ export default function Alchemy() {
       .catch((e) => {
         console.log("e", e);
       });
-  }, [ownerHash]);
+  }, []);
+
+  useEffect(() => {
+    // getNFTMetadata();
+    if (ownerHash) {
+      getNFTs(ownerHash);
+    }
+  }, [getNFTs, getNFTMetadata, ownerHash]);
 
   const columns = [
     {
@@ -92,6 +113,22 @@ export default function Alchemy() {
             {moment.utc(timeLastUpdated).local().fromNow()}
           </Text>
         </div>
+      ),
+    },
+    {
+      title: <Text textAlign="center">Get Meta Data</Text>,
+      dataIndex: "contract",
+      key: "contract",
+      render: (_, record) => (
+        <Text
+          textAlign="center"
+          cursor="pointer"
+          onClick={() =>
+            getNFTMetadata(record?.contract?.address, record?.id?.tokenId)
+          }
+        >
+          <EyeOutlined />
+        </Text>
       ),
     },
   ];
