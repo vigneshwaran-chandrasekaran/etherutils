@@ -102,6 +102,15 @@ export default function TopTokens() {
       title: "Twitter",
       dataIndex: "twitter",
       key: "twitter",
+      render: (twitter) => (
+        <>
+          {twitter && (
+            <Link href={`https://twitter.com/${twitter}`} passHref={true}>
+              {twitter}
+            </Link>
+          )}
+        </>
+      ),
     },
   ];
 
@@ -112,6 +121,10 @@ export default function TopTokens() {
         columns={columns}
         dataSource={tokensList}
         size="small"
+        pagination={{
+          pageSize: 25,
+          pageSizeOptions: ["10", "25", "50"],
+        }}
       />
     </div>
   );
