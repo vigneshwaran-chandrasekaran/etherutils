@@ -47,6 +47,15 @@
 .menu-logo {
   display: flex;
   align-items: center;
+  height: 75px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #04111d;
+  line-height: 75px;
+}
+
+.app-name {
+  padding-left: 1rem;
 }
 
 .ant-menu-submenu-popup > .ant-menu {

@@ -2,6 +2,18 @@ import React from "react";
 import Link from "next/link";
 import { Menu, Col, Row } from "antd";
 import Image from "next/image";
+import styled from "styled-components";
+
+export const MyMenu = styled(Menu)`
+  .ant-menu-title-content {
+    font-size: 16px;
+    font-weight: 600;
+    color: #04111d;
+    height: 75px;
+    line-height: 75px;
+    display: inline-block;
+  }
+`;
 
 const items = [
   {
@@ -46,13 +58,13 @@ export default function Navbar() {
               width={36}
               height={36}
             />
-            <span>Ether Utils</span>
+            <span className="app-name">Ether Utils</span>
           </a>
         </Link>
       </Col>
-      <Col span={14} />
-      <Col span={6}>
-        <Menu mode="horizontal" items={items} />
+      <Col span={10} />
+      <Col span={10}>
+        <MyMenu mode="horizontal" items={items} />
       </Col>
     </Row>
   );
