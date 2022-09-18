@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { EyeOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { Text, Table } from "@/components/atoms";
+import { Cards } from "@/components/pages/nft";
 
 export default function Alchemy() {
   const [NFTsData, setNFTsData] = useState([]);
@@ -116,17 +117,20 @@ export default function Alchemy() {
   ];
 
   return (
-    <Table
-      rowKey={(record) =>
-        record.contract.address +
-        record.contract.title +
-        record.timeLastUpdated +
-        record.description +
-        record.id.tokenId
-      }
-      columns={columns}
-      dataSource={NFTsData}
-      size="small"
-    />
+    <div>
+      <Cards data={NFTsData?.filter((item) => item?.media?.[0]?.gateway)} />
+      <Table
+        rowKey={(record) =>
+          record.contract.address +
+          record.contract.title +
+          record.timeLastUpdated +
+          record.description +
+          record.id.tokenId
+        }
+        columns={columns}
+        dataSource={NFTsData}
+        size="small"
+      />
+    </div>
   );
 }
