@@ -9,6 +9,7 @@ const { Title } = Typography;
 export default function Meta() {
   const router = useRouter();
   const [NFTsMetaData, setNFTsMetaData] = useState({});
+  const [contractMetadata, setContractMetadata] = useState({});
   const { contractAddress, tokenId } = router.query;
 
   const getNFTMetadata = useCallback((contractAddress, tokenId) => {
@@ -25,13 +26,68 @@ export default function Meta() {
       });
   }, []);
 
+  const getOwnersForToken = useCallback((contractAddress, tokenId) => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getOwnersForToken?contractAddress=${contractAddress}&tokenId=${tokenId}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setNFTsMetaData(response.data);
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+  }, []);
+
+  const getContractMetadata = useCallback((contractAddress) => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getContractMetadata?contractAddress=${contractAddress}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setContractMetadata(response.data);
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+  }, []);
+
+  const getNFTsForCollection = useCallback((contractAddress) => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getNFTsForCollection?contractAddress=${contractAddress}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        setContractMetadata(response.data);
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+  }, []);
+
   useEffect(() => {
     if (contractAddress && tokenId) {
       getNFTMetadata(contractAddress, tokenId);
+      getOwnersForToken(contractAddress, tokenId);
     }
-  }, [getNFTMetadata, contractAddress, tokenId]);
+    if (contractAddress) {
+      getContractMetadata(contractAddress);
+      getNFTsForCollection(contractAddress);
+    }
+  }, [
+    getNFTMetadata,
+    getContractMetadata,
+    getNFTsForCollection,
+    getOwnersForToken,
+    contractAddress,
+    tokenId,
+  ]);
 
   console.log("NFTsMetaData", NFTsMetaData);
+  console.log("contractMetadata", contractMetadata);
 
   return (
     <Box>
