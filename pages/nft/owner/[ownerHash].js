@@ -9,25 +9,8 @@ import { Text, Table } from "@/components/atoms";
 
 export default function Alchemy() {
   const [NFTsData, setNFTsData] = useState([]);
-  const [NFTsMetaData, setNFTsMetaData] = useState({});
   const router = useRouter();
   const { ownerHash } = router.query;
-
-  const getNFTMetadata = useCallback((contractAddress, tokenId) => {
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_ALCHEMY_API_URL}/getNFTMetadata?contractAddress=${contractAddress}&tokenId=${tokenId}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        setNFTsMetaData(response.data);
-      })
-      .catch((e) => {
-        console.log("e", e);
-      });
-  }, []);
-
-  console.log("NFTsMetaData", NFTsMetaData);
 
   const getNFTs = useCallback((ownerHash) => {
     axios
@@ -44,11 +27,10 @@ export default function Alchemy() {
   }, []);
 
   useEffect(() => {
-    // getNFTMetadata();
     if (ownerHash) {
       getNFTs(ownerHash);
     }
-  }, [getNFTs, getNFTMetadata, ownerHash]);
+  }, [getNFTs, ownerHash]);
 
   const columns = [
     {
@@ -120,15 +102,15 @@ export default function Alchemy() {
       dataIndex: "contract",
       key: "contract",
       render: (_, record) => (
-        <Text
-          textAlign="center"
-          cursor="pointer"
-          onClick={() =>
-            getNFTMetadata(record?.contract?.address, record?.id?.tokenId)
-          }
-        >
-          <EyeOutlined />
-        </Text>
+        <div>
+          <Link
+            href={`/nft/meta?contractAddress=${record?.contract?.address}&tokenId=${record?.id?.tokenId}`}
+          >
+            <a>
+              <EyeOutlined /> Click here to view more
+            </a>
+          </Link>
+        </div>
       ),
     },
   ];

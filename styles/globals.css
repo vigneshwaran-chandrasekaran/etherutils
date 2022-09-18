@@ -53,6 +53,10 @@
   border-radius: 10px;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
