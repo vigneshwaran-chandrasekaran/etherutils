@@ -3,14 +3,24 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Text, Table } from "@/components/atoms";
+import { TopTokenDetailsExpandable } from "@/components/ethplorer";
 
 export default function TopTokens() {
   const [tokensList, setTokensList] = useState([]);
+  const [topTokenHolders, seTopTokenHolders] = useState([]);
   const getTopTokens = useCallback(() => {
     const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTopTokens?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
     axios.get(url).then((res) => {
       console.log("getTopTokens ", res.data);
       setTokensList(res.data.tokens);
+    });
+  }, []);
+
+  const getTopTokenHolders = useCallback((address) => {
+    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTopTokenHolders/${address}?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
+    axios.get(url).then((res) => {
+      console.log("getTopTokenHolders ", res.data);
+      seTopTokenHolders(res.data.holders);
     });
   }, []);
 
@@ -79,7 +89,7 @@ export default function TopTokens() {
       ),
     },
     {
-      title: "totalSupply",
+      title: "Total Supply",
       dataIndex: "totalSupply",
       key: "totalSupply",
       render: (totalSupply) => <span>{totalSupply}</span>,
@@ -120,6 +130,20 @@ export default function TopTokens() {
         rowKey={(record) => record.symbol + record.address + record.image}
         columns={columns}
         dataSource={tokensList}
+        expandable={{
+          expandedRowRender: (record) => (
+            <div>
+              <TopTokenDetailsExpandable record={record} />
+             
+            </div>
+          ),
+          rowExpandable: (record) => record.name !== "Not Expandable",
+          onExpand: (expanded, record) => {
+            console.log("expanded", expanded);
+            console.log("record", record);
+            getTopTokenHolders(record.address);
+          },
+        }}
         size="small"
         pagination={{
           pageSize: 25,
