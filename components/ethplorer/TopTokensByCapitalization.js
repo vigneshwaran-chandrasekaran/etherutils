@@ -5,15 +5,15 @@ import Link from "next/link";
 import { Text, Table } from "@/components/atoms";
 import { TopTokenDetailsExpandable } from "@/components/ethplorer";
 
-export default function TopTokens() {
+export default function TopTokensByCapitalization() {
   const [tokensList, setTokensList] = useState([]);
   const [topTokenHolders, seTopTokenHolders] = useState([]);
   const [tokenHistory, setTokenHistory] = useState([]);
 
-  const getTopTokens = useCallback(() => {
-    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTopTokens?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
+  const getTop = useCallback(() => {
+    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTop?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
     axios.get(url).then((res) => {
-      console.log("getTopTokens ", res.data);
+      console.log("getTop ", res.data);
       setTokensList(res.data.tokens);
     });
   }, []);
@@ -43,8 +43,8 @@ export default function TopTokens() {
   }, []);
 
   useEffect(() => {
-    getTopTokens();
-  }, [getTopTokens]);
+    getTop();
+  }, [getTop]);
 
   const columns = [
     {
@@ -160,7 +160,7 @@ export default function TopTokens() {
 
   return (
     <div>
-      <h3>50 Top Tokens</h3>
+      <h3>Top 50 tokens by capitalization:</h3>
       <Table
         rowKey={(record) => record.symbol + record.address + record.image}
         columns={columns}

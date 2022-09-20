@@ -5,16 +5,16 @@ import Link from "next/link";
 import { Text, Table } from "@/components/atoms";
 import { TopTokenDetailsExpandable } from "@/components/ethplorer";
 
-export default function TopTokens() {
+export default function NewTokens() {
   const [tokensList, setTokensList] = useState([]);
   const [topTokenHolders, seTopTokenHolders] = useState([]);
   const [tokenHistory, setTokenHistory] = useState([]);
 
-  const getTopTokens = useCallback(() => {
-    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTopTokens?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
+  const getTokensNew = useCallback(() => {
+    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTokensNew?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
     axios.get(url).then((res) => {
-      console.log("getTopTokens ", res.data);
-      setTokensList(res.data.tokens);
+      console.log("getTokensNew ", res.data);
+      setTokensList(res.data);
     });
   }, []);
 
@@ -34,17 +34,9 @@ export default function TopTokens() {
     });
   }, []);
 
-  const getTokenPriceHistoryGrouped = useCallback((address) => {
-    const url = `${process.env.NEXT_PUBLIC_ETHPLORER_API_URL}/getTokenPriceHistoryGrouped/${address}?apiKey=${process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY}`;
-    axios.get(url).then((res) => {
-      console.log("getTokenPriceHistoryGrouped ", res.data);
-      setTokenHistory(res.data.tokens);
-    });
-  }, []);
-
   useEffect(() => {
-    getTopTokens();
-  }, [getTopTokens]);
+    getTokensNew();
+  }, [getTokensNew]);
 
   const columns = [
     {
@@ -160,7 +152,7 @@ export default function TopTokens() {
 
   return (
     <div>
-      <h3>50 Top Tokens</h3>
+      <h3>New Tokens</h3>
       <Table
         rowKey={(record) => record.symbol + record.address + record.image}
         columns={columns}
@@ -178,7 +170,6 @@ export default function TopTokens() {
             if (expanded) {
               getTopTokenHolders(record.address);
               getTokenHistoryGrouped(record.address);
-              getTokenPriceHistoryGrouped(record.address);
             }
           },
         }}

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { EthMain, Ethplorer } from "@/components/common";
-import { TopTokens } from "@/components/ethplorer";
+import { TopTokens, NewTokens, TopTokensByCapitalization } from "@/components/ethplorer";
 
 export default function Home() {
   return (
@@ -15,6 +15,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TopTokens />
+      <NewTokens />
+      <TopTokensByCapitalization />
       <EthMain />
       <Ethplorer />
     </div>
