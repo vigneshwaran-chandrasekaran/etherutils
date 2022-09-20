@@ -5,6 +5,7 @@ import Layout from "@/components/layout";
 import GlobalStyle from "@/components/globalstyles";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { theme } from "@/styles/theme";
+import { wrapper } from "@/store/index";
 
 function ErrorFallback() {
   return <div>Something went wrong</div>;
@@ -23,4 +24,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
