@@ -6,12 +6,24 @@ import { Text, Flex } from "@/components/atoms";
 export default function EthMain() {
   const [mainRecord, setMainRecord] = useState({});
   const [subRecord, setSubRecord] = useState({});
+  const [blockRecord, setBlockRecord] = useState({});
 
   function getSubRecord(latest_url) {
     axios
       .get(latest_url)
       .then((response) => {
         setSubRecord(response.data);
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+  }
+
+  function getBlocks(block) {
+    axios
+      .get(`https://api.blockcypher.com/v1/eth/main/blocks/${block}`)
+      .then((response) => {
+        setBlockRecord(response.data);
       })
       .catch((e) => {
         console.log("e", e);
@@ -25,6 +37,7 @@ export default function EthMain() {
         console.log(response.data);
         setMainRecord(response.data);
         getSubRecord(response.data?.latest_url);
+        getBlocks(response.data?.height);
       })
       .catch((e) => {
         console.log("e", e);
@@ -67,6 +80,24 @@ export default function EthMain() {
             </Text>
           </Flex>
         ))}
+        <Divider plain />
+        <div>
+          {Object.keys(blockRecord).map((key) => (
+            <Flex key={key}>
+              <Text
+                fontWeight="bold"
+                pb="1rem"
+                mr="1rem"
+                textTransform="capitalize"
+              >
+                {key}
+              </Text>
+              <Text maxWidth="800px" pb="1rem" truncate>
+                {blockRecord[key]}
+              </Text>
+            </Flex>
+          ))}
+        </div>
       </div>
     </div>
   );
