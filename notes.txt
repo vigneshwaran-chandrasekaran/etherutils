@@ -15,7 +15,10 @@ curl https://api.coinbase.com/v2/prices/ETH-USD/sell
 
 
 -----------------------------------------------------------------------------------------------------
+for design reference
+
 https://coinmarketcap.com/currencies/shiba-inu/
+https://opensea.io/collection/kanpai-pandas
 -----------------------------------------------------------------------------------------------------
 new api
 https://ethplorer.io/
@@ -26,11 +29,15 @@ https://etherchain.org/
 https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/
 https://www.blockchain.com/explorer/assets/eth
 https://blockchair.com/ethereum
+https://www.quicknode.com/chains/eth
+https://www.quicknode.com/docs
 
 -----------------------------------------------------------------------------------------------------
+https://www.quicknode.com/chains/eth
 https://blockscan.com/
 https://blockscan.com/address/0x71c7656ec7ab88b098defb751b7401b5f6d8976f
-
+https://testnet.snowtrace.io/
+https://testnet.bttcscan.com/address/0x4a8268a277f7d5318de4c2823289ce32694ceda1
 -----------------------------------------------------------------------------------------------------
 
 https://app.ens.domains/search/india
