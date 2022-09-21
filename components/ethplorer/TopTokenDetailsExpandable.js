@@ -16,6 +16,7 @@ export default function TopTokenDetailsExpandable({ record }) {
             <th>Transaction Count</th>
             <th>Eth Transfers Count</th>
             <th>Transfers Count</th>
+            <th>Twitter</th>
             <th>Reddit</th>
           </tr>
         </thead>
@@ -29,6 +30,16 @@ export default function TopTokenDetailsExpandable({ record }) {
             <td>{record?.txsCount}</td>
             <td>{record?.ethTransfersCount}</td>
             <td>{record?.transfersCount}</td>
+            <td>
+              {record?.twitter && (
+                <Link
+                  href={`https://www.twitter.com/${record?.twitter}`}
+                  passHref={true}
+                >
+                  {record?.twitter}
+                </Link>
+              )}
+            </td>
             <td>
               {record?.reddit && (
                 <Link

@@ -42,7 +42,7 @@ const columns = [
         <>
           {price?.rate && (
             <>
-              <span>{price?.currency === "USD" ? "$" : price?.rate}</span>
+              <span>{price?.currency === "USD" && "$"}</span>
               <span>{price?.rate?.toFixed(7)}</span>
             </>
           )}
@@ -92,21 +92,7 @@ const columns = [
         <>
           {website && (
             <Link href={website} passHref={true}>
-              {website}
-            </Link>
-          )}
-        </>
-      ),
-    },
-    {
-      title: "Twitter",
-      dataIndex: "twitter",
-      key: "twitter",
-      render: (twitter) => (
-        <>
-          {twitter && (
-            <Link href={`https://twitter.com/${twitter}`} passHref={true}>
-              {twitter}
+              <Text as="a" display="inline-block" maxWidth="150px">{website}</Text>
             </Link>
           )}
         </>
