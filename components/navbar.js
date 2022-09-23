@@ -24,7 +24,14 @@ const items = [
     ),
     key: "6",
   },
-  { label: "Get Balance", key: "1" },
+  {
+    label: (
+      <Link href="/ethers/contract/0xF43Aa730d29738A26Ea2Ab700b3a2a604574E089">
+        <a>Contract ABI Info</a>
+      </Link>
+    ),
+    key: "1",
+  },
   { label: "View Transactions", key: "2" },
   {
     label: (
@@ -34,7 +41,6 @@ const items = [
     ),
     key: "5",
   },
-
   {
     label: "Tools",
     key: "submenu",
