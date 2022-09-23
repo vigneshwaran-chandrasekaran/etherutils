@@ -18,3 +18,6 @@ export {
   ETHPLORER_URL,
   INFURA_API_KEY
 };
+
+// https://api.etherscan.io/apis
+// https://sebs.github.io/etherscan-api/
