@@ -45,8 +45,14 @@ const items = [
     label: "Tools",
     key: "submenu",
     children: [
-      { label: "Get Balance", key: "3" },
-      { label: "View Transactions", key: "4" },
+      {
+        label: (
+          <Link href="/ethers/price">
+            <a>Eth Price</a>
+          </Link>
+        ),
+        key: "7",
+      },
     ],
   },
 ];

@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 import { useRouter } from "next/router";
 import { isEmpty } from "lodash";
 import { ETHERSCAN_API_KEY, ETHER_URL } from "@/utils/constants";
-import { Box, Flex } from "@/components/atoms";
+import { Box, Text } from "@/components/atoms";
 
 const { Panel } = Collapse;
 
@@ -122,39 +122,79 @@ export default function Ether() {
   }
 
   useEffect(() => {
-    if (contractHash) {
+    console.log("is Valid address", ethers.utils.isAddress(contractHash));
+    if (ethers.utils.isAddress(contractHash)) {
       getABI(contractHash);
     }
   }, [contractHash]);
 
   return (
     <div>
-      <Tabs defaultActiveKey="read">
-        <Tabs.TabPane tab="Read Contract" key="read">
-          {!isEmpty(contractData?.readContract) && (
-            <Collapse defaultActiveKey={["1"]}>
-              {Object.keys(contractData?.readContract).map((key) => (
-                <Panel
-                  key={key}
-                  header={`${Number(key) + 1}. ${
-                    contractData?.readContract?.[key]?.name
-                  }`}
-                  showArrow={false}
-                >
-                  <EachReadData
-                    contract={contractData?.contract}
-                    keyName={contractData?.readContract?.[key]?.name}
-                    current={contractData?.readContract?.[key]}
-                  />
-                </Panel>
-              ))}
-            </Collapse>
-          )}
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="Write Contract" key="write">
-          Write Contract
-        </Tabs.TabPane>
-      </Tabs>
+      {ethers.utils.isAddress(contractHash) ? (
+        <Tabs
+          defaultActiveKey="read"
+          items={[
+            {
+              label: `Read Contract`,
+              key: "read",
+              children: (
+                <Box>
+                  {!isEmpty(contractData?.readContract) && (
+                    <Collapse defaultActiveKey={["1"]}>
+                      {Object.keys(contractData?.readContract).map((key) => (
+                        <Panel
+                          key={key}
+                          header={`${Number(key) + 1}. ${
+                            contractData?.readContract?.[key]?.name
+                          }`}
+                          showArrow={false}
+                        >
+                          <EachReadData
+                            contract={contractData?.contract}
+                            keyName={contractData?.readContract?.[key]?.name}
+                            current={contractData?.readContract?.[key]}
+                          />
+                        </Panel>
+                      ))}
+                    </Collapse>
+                  )}
+                </Box>
+              ),
+            },
+            {
+              label: `Write Contract`,
+              key: "write",
+              children: (
+                <Box>
+                  {!isEmpty(contractData?.readContract) && (
+                    <Collapse defaultActiveKey={["1"]}>
+                      {Object.keys(contractData?.readContract).map((key) => (
+                        <Panel
+                          key={key}
+                          header={`${Number(key) + 1}. ${
+                            contractData?.readContract?.[key]?.name
+                          }`}
+                          showArrow={false}
+                        >
+                          <EachReadData
+                            contract={contractData?.contract}
+                            keyName={contractData?.readContract?.[key]?.name}
+                            current={contractData?.readContract?.[key]}
+                          />
+                        </Panel>
+                      ))}
+                    </Collapse>
+                  )}
+                </Box>
+              ),
+            },
+          ]}
+        />
+      ) : (
+        <Text as="h2" textAlign="center">
+          Not a valid address
+        </Text>
+      )}
     </div>
   );
 }
