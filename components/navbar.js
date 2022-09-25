@@ -32,7 +32,14 @@ const items = [
     ),
     key: "1",
   },
-  { label: "View Transactions", key: "2" },
+  {
+    label: (
+      <Link href="/news">
+        <a>News</a>
+      </Link>
+    ),
+    key: "2",
+  },
   {
     label: (
       <Link href="/ethers/address/0x00000000219ab540356cbb839cbe05303d7705fa">

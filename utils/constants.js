@@ -1,3 +1,5 @@
+import qs from "qs";
+
 const ETHERSCAN_API_KEY = process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY;
 const ETHERSCAN_API_URL = process.env.NEXT_PUBLIC_ETHERSCAN_API_URL;
 const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY;
@@ -8,6 +10,12 @@ const SAMPLE_MULTIPLE_ADDRESS =
 const ETHPLORER_KEY = process.env.NEXT_PUBLIC_ETHPLORER_IO_API_KEY;
 const ETHPLORER_URL = process.env.NEXT_PUBLIC_ETHPLORER_API_URL;
 
+const getCryptoCompareUrl = (path, queryString = {}) => {
+  return `${process.env.NEXT_PUBLIC_CRYPTOCOMPARE_API_URL}/${path}?api_key=${
+    process.env.NEXT_PUBLIC_CRYPTOCOMPARE_API_KEY
+  }&${qs.stringify(queryString)}`;
+};
+
 export {
   ETHERSCAN_API_KEY,
   ETHERSCAN_API_URL,
@@ -16,7 +24,8 @@ export {
   SAMPLE_MULTIPLE_ADDRESS,
   ETHPLORER_KEY,
   ETHPLORER_URL,
-  INFURA_API_KEY
+  INFURA_API_KEY,
+  getCryptoCompareUrl,
 };
 
 // https://api.etherscan.io/apis
