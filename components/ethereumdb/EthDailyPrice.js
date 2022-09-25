@@ -3,6 +3,7 @@ import axios from "axios";
 import { Text, Table, Box } from "@/components/atoms";
 import moment from "moment";
 import { getTime } from "@/utils/time";
+import { EthDailyPriceChart } from "@/components/ethereumdb";
 
 const columns = [
   {
@@ -45,16 +46,18 @@ const columns = [
   },
 ];
 
+const TODAY = moment().format("YYYY-MM-DD");
+const ONE_MONTH_BEFORE = moment().subtract(1, "months").format("YYYY-MM-DD");
+
 export default function EthDailyPrice() {
   const [historyData, setHistoryData] = useState([]);
   const getPrice = useCallback(() => {
-    const url =
-      "https://api.ethereumdb.com/v1/timeseries/history?pair=ETH-USD&from=2022-08-31&to=2022-09-25";
+    const url = `https://api.ethereumdb.com/v1/timeseries/history?pair=ETH-USD&from=${ONE_MONTH_BEFORE}&to=${TODAY}`;
     // const url =
     //   "https://api.ethereumdb.com/v1/timeseries?pair=ETH-USD&range=1y&type=line";
     axios.get(url).then((res) => {
       console.log("getPrice ", res.data);
-      setHistoryData(res.data);
+      setHistoryData(res.data.reverse());
     });
   }, []);
 
@@ -64,6 +67,12 @@ export default function EthDailyPrice() {
 
   return (
     <div>
+      <EthDailyPriceChart
+        values={historyData?.map((item) => item.open)}
+        labels={historyData?.map((item) =>
+          moment(getTime(item.timestamp)).format("DD MMM YYYY")
+        )}
+      />
       <Table
         rowKey={(record) => record.open + record.timestamp}
         columns={columns}

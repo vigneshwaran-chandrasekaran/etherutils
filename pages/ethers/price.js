@@ -1,5 +1,5 @@
 import React from "react";
-import { EthDailyPrice } from "@/components/etherscan";
+import { EthDailyPrice } from "@/components/ethereumdb";
 
 export default function EthPrice() {
   return (
