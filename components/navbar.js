@@ -60,6 +60,14 @@ const items = [
         ),
         key: "7",
       },
+      {
+        label: (
+          <Link href="/open-api">
+            <a>Open/Free API</a>
+          </Link>
+        ),
+        key: "8",
+      },
     ],
   },
 ];
